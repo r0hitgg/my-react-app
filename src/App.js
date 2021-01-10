@@ -9,7 +9,7 @@ const App = () => {
     return(
         <Router>
             <Provider store={store}>
-                <NavigationBar/>
+                <NavigationBar />
                 <Switch>
                     <Route exact path="/" component={Products} />
                     <Route exact path="/product/:id" render={(props) => <ProductPage {...props }/>}/>

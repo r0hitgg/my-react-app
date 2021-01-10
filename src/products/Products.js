@@ -1,4 +1,6 @@
 import React , { Component } from 'react';
+import ProductTemplate from "../components/ProductTemplate";
+import { Container, Row, Col } from "react-bootstrap";
 // const Products = (props) => {
 class Products extends Component{
     constructor(props) {
@@ -35,15 +37,19 @@ class Products extends Component{
 
     render(){
         console.log(this,'thisa in render')
+        const { products } = this.state;
+        console.log(products,'thisa in products')
         return (
             <div className="App">
-                <header className="App-header">
-                    <div>
-                        { this.state.products.map( (product, index) => (
-                            <div> { product.name } </div>
-                        ))}
-                    </div>
-                </header>
+                <div className="App-header">
+                    <Container className="col-md-9">
+                        <Row className="col-md-12">
+                            { products.map( (product) => (
+                                <ProductTemplate product={product} />
+                            ))}
+                        </Row>
+                    </Container>
+                </div>
             </div>
         )
     }
@@ -53,8 +59,8 @@ class Products extends Component{
 // import {GET_ALL_PRODUCTS} from "../actions/type";
 // import { connect } from "react-redux";
 // import { getAllProducts } from "../actions/productActions";
-const mapStateToProps = state => (
-       state.products
-);
+// const mapStateToProps = state => (
+//        state.products
+// );
 // export default connect(mapStateToProps,{getAllProducts})(Products);
 export default Products;
