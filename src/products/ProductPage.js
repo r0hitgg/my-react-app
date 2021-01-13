@@ -1,9 +1,12 @@
 import React , { useEffect } from 'react';
 import { connect } from "react-redux";
 import { getAllProducts } from "../actions/productActions";
+import store from "../store"
 
 const ProductPage = (props) => {
 
+    const storeData = store.getState();
+    console.log(storeData,'.........storeadata')
     console.log(props,'props');
     useEffect(() => {
         console.log(props,'.propd')

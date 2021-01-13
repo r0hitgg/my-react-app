@@ -1,6 +1,6 @@
 import React , { Component } from 'react';
 import ProductTemplate from "../components/ProductTemplate";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 // const Products = (props) => {
 class Products extends Component{
     constructor(props) {
@@ -18,10 +18,10 @@ class Products extends Component{
 
     componentDidMount(){
         console.log(this,'this in will mount')
-        fetch("http://localhost:7073/api/v1/demo/product.product",{
+        fetch("http://localhost:7073/api/v1/demo/product.template",{
             method: 'GET',
             headers: {
-                "authorization" : "Basic YXBpX2RiOjg3Y2FhMDU4LWI1OTktNDkxNS04YjcxLWUxMzk5N2Q4NDM2Zg==",
+                "authorization" : "Basic YXBpX2RiOjY0ODBlZjhmLWZmNTAtNGQ1ZS04Yzk4LTczM2FkMDBiYTQwNQ==",
                 // "content-type" : "application/json"
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
