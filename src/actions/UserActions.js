@@ -1,4 +1,4 @@
-import { LOG_IN_USER } from "./type";
+import { LOG_IN_USER , LOG_OUT_USER} from "./type";
 
 export const logInUser = ( user ) => {
 
@@ -14,5 +14,13 @@ export const logInUser = ( user ) => {
                 email: user.login,
             }
         });
+    }
+}
+export const logOutUser = () =>  {
+    return dispatch => {
+        dispatch({
+            type: LOG_OUT_USER,
+            payload: {}
+        })
     }
 }

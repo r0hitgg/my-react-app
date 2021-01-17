@@ -1,4 +1,4 @@
-import { GET_ALL_PRODUCTS } from "../actions/type";
+import { GET_PRODUCT } from "../actions/type";
 
 const initialState = {
     products: [],
@@ -6,7 +6,7 @@ const initialState = {
 
 export default function( state = initialState, action) {
     switch(action.type) {
-        case GET_ALL_PRODUCTS:
+        case GET_PRODUCT:
             return {
                 ...state,
                 products: action.payload

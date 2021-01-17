@@ -1,30 +1,35 @@
 import React , { useEffect } from 'react';
 import { connect } from "react-redux";
-import { getAllProducts } from "../actions/productActions";
-import store from "../store"
+import { getProduct } from "../actions/productActions";
 
 const ProductPage = (props) => {
 
-    const storeData = store.getState();
-    console.log(storeData,'.........storeadata')
-    console.log(props,'props');
     useEffect(() => {
-        console.log(props,'.propd')
-        props.getAllProducts();
+        props.getProduct(props.match.params.id);
     },[]);
-    // console.log(products,'products');
+
     return (
-        <div className="App">
-            <header className="App-header">
-                <div>
-                    Hello
+        <div className="container p-4">
+            <div className="col-md-12 row">
+                <div className="col-md-6">
+                    <img src={`data:image/jpeg;base64,${props.products.image}`} alt="Product"/>
                 </div>
-            </header>
+                <div className="col-md-6">
+                    <div className="p-2">
+                        <h4>Name: </h4>
+                        <span>{props.products.name}</span>
+                    </div>
+                    <div className="p-2">
+                        <h4>Price: </h4>
+                        <span>${props.products.price}</span>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }
 const mapStateToProps = state => (
     state.products
 );
-export default connect(mapStateToProps,{getAllProducts})(ProductPage);
-// export default ProductPage;
+
+export default connect(mapStateToProps,{getProduct})(ProductPage);

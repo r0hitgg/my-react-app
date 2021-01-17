@@ -1,7 +1,7 @@
 import React , { Component } from 'react';
 import ProductTemplate from "../components/ProductTemplate";
 import { Container, Row } from "react-bootstrap";
-// const Products = (props) => {
+
 class Products extends Component{
     constructor(props) {
         super(props);
@@ -17,7 +17,6 @@ class Products extends Component{
     }
 
     componentDidMount(){
-        console.log(this,'this in will mount')
         fetch("http://localhost:7073/api/v1/demo/product.template",{
             method: 'GET',
             headers: {
@@ -36,16 +35,14 @@ class Products extends Component{
     }
 
     render(){
-        console.log(this,'thisa in render')
         const { products } = this.state;
-        console.log(products,'thisa in products')
         return (
             <div className="App">
                 <div className="App-header">
                     <Container className="col-md-9">
                         <Row className="col-md-12">
                             { products.map( (product) => (
-                                <ProductTemplate product={product} />
+                                <ProductTemplate key={product.id} product={product} />
                             ))}
                         </Row>
                     </Container>

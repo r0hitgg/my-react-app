@@ -1,19 +1,10 @@
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers';
-import throttle from 'lodash/throttle';
+import { save, load } from "redux-localstorage-simple";
+import { composeWithDevTools } from "redux-devtools-extension";
 
-const middleware = [thunk];
+const store = createStore(rootReducer ,load(),
+    composeWithDevTools(applyMiddleware(thunk, save())));
 
-const persistedState = {
-    products: []
-};
-
-const store = createStore(rootReducer ,persistedState,
-    compose(applyMiddleware(...middleware)));
-store.subscribe(throttle(() => {
-    // saveOrderID(store.getState().products.completedOrder);
-    // saveItemState(store.getState().products.item);
-    // saveCartState(store.getState().products.cart);
-}, 1000));
 export default store;

@@ -1,7 +1,7 @@
-import { GET_ALL_PRODUCTS } from "./type";
+import { GET_PRODUCT } from "./type";
 
-export const getAllProducts = () => async dispatch => {
-    fetch("http://localhost:7073/api/v1/demo/product.template",{
+export const getProduct = (id) => async dispatch => {
+    fetch("http://localhost:7073/api/v1/demo/product.template/" + id,{
         method: 'GET',
         headers: {
             "authorization" : "Basic YXBpX2RiOjY0ODBlZjhmLWZmNTAtNGQ1ZS04Yzk4LTczM2FkMDBiYTQwNQ==",
@@ -13,11 +13,15 @@ export const getAllProducts = () => async dispatch => {
     }).then(
         res => res.json()
     ).then( (result) => {
-        // this.setState({ products:result });
         console.log(result,'.......in payload')
         dispatch({
-            type: GET_ALL_PRODUCTS,
-            payload: result
+            type: GET_PRODUCT,
+            payload: {
+                name: result.name,
+                image: result.image_1920,
+                category: result.categ_id,
+                price: result.list_price
+            }
         });
     })
 }

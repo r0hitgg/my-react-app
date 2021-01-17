@@ -1,17 +1,19 @@
-import { LOG_IN_USER } from "../actions/type";
+import { LOG_IN_USER, LOG_OUT_USER } from "../actions/type";
 
 const initialState = {
 };
 
 const userReducer = ( state = initialState, action) => {
-    const userObject = action.payload
-    console.log(userObject,'..........userObject in reducer')
+    const user = action.payload;
+    console.log(user,'..........userObject in reducer',state)
     switch(action.type) {
         case LOG_IN_USER:
             return {
-                ...state,
-                userData: action.payload
-
+                ...user
+            }
+        case LOG_OUT_USER:
+            return {
+                ...user
             }
         default:
             return state;

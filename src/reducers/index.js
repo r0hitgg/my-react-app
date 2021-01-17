@@ -3,7 +3,8 @@ import  productReducer  from './productsReducer';
 import userReducer from './UserReducers'
 
 
-export default combineReducers({
+const rootReducer = combineReducers({
     products: productReducer,
     userData: userReducer,
 });
+export default rootReducer;

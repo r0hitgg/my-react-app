@@ -3,6 +3,8 @@ import { useHistory } from "react-router-dom"
 import { connect } from "react-redux";
 import { logInUser }  from '../actions/UserActions';
 import PropTypes from 'prop-types';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
 const LogIn = ({userData, logInUser}) => {
     const history = useHistory();
@@ -16,7 +18,6 @@ const LogIn = ({userData, logInUser}) => {
 
     function onSubmit(e) {
         e.preventDefault();
-        console.log(userEmail, 'inside', userPassword)
 
         fetch("http://localhost:7073/api/v1/demo/res.users/call/_login", {
             method: 'PATCH',
@@ -55,33 +56,31 @@ const LogIn = ({userData, logInUser}) => {
     }
 
     return (
-        <form className="container p-5">
+        <form className="container p-5 col-md-5">
 
-            <h3>Log in</h3>
+            <h3 className="p-3">Log In</h3>
 
-            <div className="form-group">
-                <label>Email</label>
-                <input type="email" className="form-control" onChange={e => setUserEmail(e.target.value)}
-                       value={userEmail} placeholder="Enter email"/>
+            <div className="form-group p-3">
+                <TextField variant="outlined" type="email" className="form-control" onChange={e => setUserEmail(e.target.value)}
+                       value={userEmail} label="Email"/>
             </div>
 
-            <div className="form-group">
-                <label>Password</label>
-                <input type="password" className="form-control" onChange={e => setUserPassword(e.target.value)}
-                       value={userPassword} placeholder="Enter password"/>
+            <div className="form-group p-3">
+                <TextField type="password" variant="outlined" className="form-control" onChange={e => setUserPassword(e.target.value)}
+                       value={userPassword} label="Password"/>
             </div>
 
-            <div className="form-group">
+            <div className="form-group p-3">
                 <div className="custom-control custom-checkbox">
                     <input type="checkbox" className="custom-control-input" id="customCheck1"/>
                     <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
                 </div>
             </div>
 
-            <button onClick={(e) => onSubmit(e)}
+            <Button onClick={(e) => onSubmit(e)} variant="contained" color="primary"
                     className="btn btn-dark btn-lg btn-block">Sign in
-            </button>
-            <p className="forgot-password text-right">
+            </Button>
+            <p className="forgot-password text-right p-3">
                 Forgot password?
             </p>
         </form>
